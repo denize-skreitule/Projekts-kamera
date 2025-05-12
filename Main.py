@@ -10,16 +10,12 @@ class Kamera:
     saite: str
 
 def iegut_kameras():
-    url = "https://www.ebay.com/sch/i.html?_nkw=digital+camera&_sacat=0&LH_ItemCondition=1000|3000"
+    url = "https://www.ebay.com/sch/i.html?_nkw=digital+camera&_sacat=0&LH_ItemCondition=3000|3000"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
     }
 
     response = requests.get(url, headers=headers)
-
-    print(f"Statusa kods: {response.status_code}")
-    print("Lapas sākuma HTML saturs:")
-    print(response.text[:1000])
 
     soup = BeautifulSoup(response.text, "html.parser")
     preces = soup.select(".s-item")
@@ -51,7 +47,7 @@ def iegut_kameras():
     return sorted(kameras, key=lambda k: k.cena)[:10]
 
 def izvadit_kameras_terminali(kameras):
-    print("\n10 lētākās digitālās kameras eBay (jaunas vai lietotas):\n")
+    print("10 lētākās digitālās kameras eBay (jaunas vai lietotas):")
     for i, kamera in enumerate(kameras, 1):
         print(f"{i}. {kamera.nosaukums}")
         print(f"   Cena: ${kamera.cena}")

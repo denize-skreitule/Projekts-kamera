@@ -17,10 +17,9 @@ def iegut_kameras():
 
     response = requests.get(url, headers=headers)
 
-    # 🔍 Pārbaude: vai lapa ielādējas?
     print(f"Statusa kods: {response.status_code}")
     print("Lapas sākuma HTML saturs:")
-    print(response.text[:1000])  # Izvada pirmos 1000 simbolus
+    print(response.text[:1000])
 
     soup = BeautifulSoup(response.text, "html.parser")
     preces = soup.select(".s-item")
